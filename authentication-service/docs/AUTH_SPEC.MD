@@ -33,6 +33,7 @@
     - unexpected client id
     - duplicate phone number
     - duplicate email
+    - password not match
 
 ### POST /v1/auth/sign-in
 - Headers:
@@ -51,8 +52,8 @@
     ```json
     {
         "access_token": "string",
-        "refresh_token": "string", // default + 1 day
-        "token_valid_until": "datetime", // default + 1 hour
+        "refresh_token": "string", // default + 7 day
+        "token_valid_until": "datetime", // default + 24 hour
     }
     ```
 - Response Failed
@@ -103,8 +104,8 @@
     ```json
     {
         "access_token": "string",
-        "refresh_token": "string", // default + 1 day
-        "token_valid_until": "datetime", // default + 1 hour
+        "refresh_token": "string", // default + 7 day
+        "token_valid_until": "datetime", // default + 24 hour
     }
     ```
 - Response Failed
@@ -117,7 +118,7 @@
     - unexpected client id
     - unexpected refresh token
 
-### PUT /v1/auth/user
+### PUT /v1/auth/user/:id
 - Headers:
     ```
     x-client-id: base-64(client-id:client-key)
@@ -136,7 +137,9 @@
 - Reponse Success
     ```json
     {
-        "message": "success"
+        "access_token": "string",
+        "refresh_token": "string", // default + 7 day
+        "token_valid_until": "datetime", // default + 24 hour
     }
     ```
 - Response Failed
